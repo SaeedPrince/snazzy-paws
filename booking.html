@@ -4,47 +4,366 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Booking - Snazzy Paws Grooming</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <style>
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .page-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 80px 0 60px 0;
+    }
+    .booking-form {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      padding: 2rem;
+      margin-top: -50px;
+      position: relative;
+      z-index: 10;
+    }
+    .form-control, .form-select {
+      border-radius: 10px;
+      border: 2px solid #e9ecef;
+      padding: 12px 15px;
+      transition: all 0.3s ease;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border: none;
+      border-radius: 10px;
+      padding: 12px 30px;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #5a6fd8, #6a4190);
+    }
+    .info-card {
+      background: #f8f9fa;
+      border-radius: 15px;
+      padding: 1.5rem;
+      height: 100%;
+    }
+    footer {
+      background: #2c3e50;
+      color: white;
+    }
+    .form-icon {
+      color: #667eea;
+      margin-right: 8px;
+    }
+    .service-option {
+      border: 2px solid #e9ecef;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .service-option:hover {
+      border-color: #667eea;
+      background: #f8f9ff;
+    }
+    .service-option.selected {
+      border-color: #667eea;
+      background: #f8f9ff;
+    }
+    .service-option input[type="checkbox"] {
+      margin-right: 10px;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <h1>Snazzy Paws Grooming</h1>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="booking.html">Booking</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-heart-fill me-2"></i>Snazzy Paws Grooming
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gallery.html">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="booking.html">Booking</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-  <main>
-    <section>
-  <form>
-    <label for="owner-name">Owner’s Name:</label>
-    <input type="text" id="owner-name" name="owner-name" required />
+  <!-- Page Header -->
+  <section class="page-header text-center">
+    <div class="container">
+      <h1 class="display-4 mb-3">Book an Appointment</h1>
+      <p class="lead">Schedule your pet's grooming session today</p>
+    </div>
+  </section>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required />
+  <!-- Booking Form Section -->
+  <section class="pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="booking-form">
+            <form id="bookingForm">
+              <div class="row">
+                <!-- Owner Information -->
+                <div class="col-12 mb-4">
+                  <h4 class="mb-3">
+                    <i class="bi bi-person-circle form-icon"></i>Owner Information
+                  </h4>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                  <label for="owner-name" class="form-label">Owner's Name *</label>
+                  <input type="text" class="form-control" id="owner-name" name="owner-name" required />
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                  <label for="email" class="form-label">Email Address *</label>
+                  <input type="email" class="form-control" id="email" name="email" required />
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                  <label for="phone" class="form-label">Phone Number</label>
+                  <input type="tel" class="form-control" id="phone" name="phone" />
+                </div>
+                
+                <!-- Pet Information -->
+                <div class="col-12 mb-4 mt-4">
+                  <h4 class="mb-3">
+                    <i class="bi bi-heart-fill form-icon"></i>Pet Information
+                  </h4>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                  <label for="dog-name" class="form-label">Pet's Name *</label>
+                  <input type="text" class="form-control" id="dog-name" name="dog-name" required />
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                  <label for="breed" class="form-label">Breed</label>
+                  <input type="text" class="form-control" id="breed" name="breed" placeholder="e.g., Golden Retriever" />
+                </div>
+                
+                <div class="col-md-4 mb-3">
+                  <label for="age" class="form-label">Age</label>
+                  <input type="number" class="form-control" id="age" name="age" min="0" max="25" />
+                </div>
+                
+                <div class="col-md-4 mb-3">
+                  <label for="weight" class="form-label">Weight (lbs)</label>
+                  <input type="number" class="form-control" id="weight" name="weight" min="1" max="200" />
+                </div>
+                
+                <div class="col-md-4 mb-3">
+                  <label for="size" class="form-label">Size</label>
+                  <select class="form-select" id="size" name="size">
+                    <option value="">Select Size</option>
+                    <option value="small">Small (under 25 lbs)</option>
+                    <option value="medium">Medium (25-60 lbs)</option>
+                    <option value="large">Large (60+ lbs)</option>
+                  </select>
+                </div>
+                
+                <!-- Services -->
+                <div class="col-12 mb-4 mt-4">
+                  <h4 class="mb-3">
+                    <i class="bi bi-scissors form-icon"></i>Select Services
+                  </h4>
+                </div>
+                
+                <div class="col-12 mb-3">
+                  <div class="service-option">
+                    <input type="checkbox" id="full-groom" name="services" value="full-groom" />
+                    <label for="full-groom" class="form-check-label">
+                      <strong>Full Groom - $50</strong>
+                      <div class="text-muted small">Complete grooming package including bath, dry, cut, nail trim, and ear cleaning</div>
+                    </label>
+                  </div>
+                  
+                  <div class="service-option">
+                    <input type="checkbox" id="bath-dry" name="services" value="bath-dry" />
+                    <label for="bath-dry" class="form-check-label">
+                      <strong>Bath & Dry - $30</strong>
+                      <div class="text-muted small">Thorough bath with premium shampoos and professional blow-drying</div>
+                    </label>
+                  </div>
+                  
+                  <div class="service-option">
+                    <input type="checkbox" id="nail-trim" name="services" value="nail-trim" />
+                    <label for="nail-trim" class="form-check-label">
+                      <strong>Nail Trim - $15</strong>
+                      <div class="text-muted small">Professional nail trimming service</div>
+                    </label>
+                  </div>
+                  
+                  <div class="service-option">
+                    <input type="checkbox" id="ear-cleaning" name="services" value="ear-cleaning" />
+                    <label for="ear-cleaning" class="form-check-label">
+                      <strong>Ear Cleaning - $10</strong>
+                      <div class="text-muted small">Gentle ear cleaning to prevent infections</div>
+                    </label>
+                  </div>
+                </div>
+                
+                <!-- Appointment Details -->
+                <div class="col-12 mb-4 mt-4">
+                  <h4 class="mb-3">
+                    <i class="bi bi-calendar-check form-icon"></i>Appointment Details
+                  </h4>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                  <label for="date" class="form-label">Preferred Date *</label>
+                  <input type="date" class="form-control" id="date" name="date" required />
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                  <label for="time" class="form-label">Preferred Time</label>
+                  <select class="form-select" id="time" name="time">
+                    <option value="">Select Time</option>
+                    <option value="9:00">9:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="13:00">1:00 PM</option>
+                    <option value="14:00">2:00 PM</option>
+                    <option value="15:00">3:00 PM</option>
+                    <option value="16:00">4:00 PM</option>
+                    <option value="17:00">5:00 PM</option>
+                  </select>
+                </div>
+                
+                <div class="col-12 mb-3">
+                  <label for="special-requests" class="form-label">Special Requests or Notes</label>
+                  <textarea class="form-control" id="special-requests" name="special-requests" rows="3" placeholder="Any special instructions, behavioral notes, or requests..."></textarea>
+                </div>
+                
+                <div class="col-12 mb-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="first-visit" name="first-visit" />
+                    <label class="form-check-label" for="first-visit">
+                      This is my pet's first visit to Snazzy Paws Grooming
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="col-12 text-center mt-4">
+                  <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="bi bi-calendar-plus me-2"></i>Book Appointment
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        
+        <div class="col-lg-4">
+          <div class="info-card mb-4">
+            <h5 class="mb-3">
+              <i class="bi bi-info-circle form-icon"></i>Booking Information
+            </h5>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <i class="bi bi-clock text-primary me-2"></i>
+                <strong>Hours:</strong> Mon-Sat 9:00am - 6:00pm
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-calendar text-primary me-2"></i>
+                <strong>Advance Notice:</strong> 24 hours preferred
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-telephone text-primary me-2"></i>
+                <strong>Emergency:</strong> Call for same-day availability
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-credit-card text-primary me-2"></i>
+                <strong>Payment:</strong> Cash, Card, or Digital payments accepted
+              </li>
+            </ul>
+          </div>
+          
+          <div class="info-card">
+            <h5 class="mb-3">
+              <i class="bi bi-heart form-icon"></i>What to Expect
+            </h5>
+            <p class="small text-muted">
+              Your pet will be treated with love and care throughout their grooming session. We maintain a calm, stress-free environment and take breaks as needed to ensure your pet's comfort.
+            </p>
+            <p class="small text-muted">
+              Please ensure your pet is up to date on vaccinations and let us know about any behavioral concerns or health issues.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <label for="dog-name">Dog’s Name:</label>
-    <input type="text" id="dog-name" name="dog-name" />
-
-    <label for="breed">Breed:</label>
-    <input type="text" id="breed" name="breed" />
-
-    <label for="age">Age:</label>
-    <input type="number" id="age" name="age" />
-
-    <button type="submit">Submit</button>
-  </form>
-</section>
-  </main>
-
-  <footer>
-    <p>Opening Hours: Mon–Sat 9:00am – 6:00pm</p>
+  <!-- Footer -->
+  <footer class="py-4 mt-5">
+    <div class="container text-center">
+      <p class="mb-0"><i class="bi bi-clock me-2"></i>Opening Hours: Mon–Sat 9:00am – 6:00pm</p>
+    </div>
   </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Set minimum date to today
+    document.addEventListener('DOMContentLoaded', function() {
+      const dateInput = document.getElementById('date');
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.min = today;
+      
+      // Add click handlers for service options
+      const serviceOptions = document.querySelectorAll('.service-option');
+      serviceOptions.forEach(option => {
+        option.addEventListener('click', function(e) {
+          if (e.target.type !== 'checkbox') {
+            const checkbox = this.querySelector('input[type="checkbox"]');
+            checkbox.checked = !checkbox.checked;
+          }
+          
+          if (this.querySelector('input[type="checkbox"]').checked) {
+            this.classList.add('selected');
+          } else {
+            this.classList.remove('selected');
+          }
+        });
+      });
+      
+      // Form submission handler
+      document.getElementById('bookingForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your booking request! We will contact you within 24 hours to confirm your appointment.');
+      });
+    });
+  </script>
 </body>
 </html>

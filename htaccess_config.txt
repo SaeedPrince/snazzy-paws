@@ -1,0 +1,116 @@
+# =============================================================================
+# .htaccess Configuration File for Snazzy Paws Grooming Staff Portal
+# =============================================================================
+# This file protects sensitive staff information from unauthorized access
+# Place this file in the same directory as staff-roster.html
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# BASIC HTTP AUTHENTICATION
+# -----------------------------------------------------------------------------
+# Enable Apache Basic Authentication
+AuthType Basic
+AuthName "Snazzy Paws Staff Portal - Authorized Personnel Only"
+
+# Specify the password file location (update path to match your server)
+# This should point to the actual location of your .htpasswd file
+AuthUserFile /path/to/your/website/.htpasswd
+
+# Require valid user authentication for all protected resources
+Require valid-user
+
+# -----------------------------------------------------------------------------
+# FILE-SPECIFIC PROTECTION
+# -----------------------------------------------------------------------------
+# Protect the staff roster page specifically
+<Files "staff-roster.html">
+    Require valid-user
+</Files>
+
+# -----------------------------------------------------------------------------
+# SECURITY HEADERS
+# -----------------------------------------------------------------------------
+# Add security headers if mod_headers is available
+<IfModule mod_headers.c>
+    # Prevent page from being displayed in frames (clickjacking protection)
+    Header always append X-Frame-Options DENY
+    
+    # Prevent MIME type sniffing which could lead to security vulnerabilities
+    Header set X-Content-Type-Options nosniff
+    
+    # Enable browser's built-in XSS protection
+    Header set X-XSS-Protection "1; mode=block"
+    
+    # Enforce HTTPS connections (uncomment if using SSL/TLS)
+    # Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+    
+    # Prevent caching of sensitive staff information
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+</IfModule>
+
+# -----------------------------------------------------------------------------
+# FILE TYPE RESTRICTIONS
+# -----------------------------------------------------------------------------
+# Block access to sensitive file types that shouldn't be web-accessible
+<FilesMatch "\.(log|txt|md|sql|conf|bak|old)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# -----------------------------------------------------------------------------
+# CUSTOM ERROR PAGES
+# -----------------------------------------------------------------------------
+# Provide user-friendly error messages for authentication failures
+ErrorDocument 401 "Access Denied: Please contact your system administrator for access to the staff portal."
+ErrorDocument 403 "Forbidden: You do not have permission to access this resource."
+
+# -----------------------------------------------------------------------------
+# IP-BASED ACCESS CONTROL (OPTIONAL)
+# -----------------------------------------------------------------------------
+# Uncomment and modify IP addresses to restrict access to office networks only
+# This adds an extra layer of security beyond username/password
+#<RequireAll>
+#    Require valid-user
+#    # Allow access from office network
+#    Require ip 192.168.1.0/24
+#    # Allow access from corporate network
+#    Require ip 10.0.0.0/8
+#    # Allow access from specific IP (e.g., manager's home office)
+#    Require ip 203.0.113.10
+#</RequireAll>
+
+# -----------------------------------------------------------------------------
+# LOGGING CONFIGURATION
+# -----------------------------------------------------------------------------
+# Log authentication attempts for security monitoring
+LogLevel info
+# Update log path to match your server configuration
+CustomLog /var/log/apache2/staff_access.log combined
+
+# -----------------------------------------------------------------------------
+# DIRECTORY SECURITY
+# -----------------------------------------------------------------------------
+# Disable directory browsing to prevent file listing
+Options -Indexes
+
+# -----------------------------------------------------------------------------
+# HTTPS REDIRECTION (RECOMMENDED)
+# -----------------------------------------------------------------------------
+# Force HTTPS for staff portal access (uncomment if SSL certificate is installed)
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^staff-roster\.html$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# -----------------------------------------------------------------------------
+# ADDITIONAL SECURITY MEASURES
+# -----------------------------------------------------------------------------
+# Disable server signature to hide Apache version information
+ServerSignature Off
+
+# Remove server information from response headers (if mod_headers is available)
+<IfModule mod_headers.c>
+    Header unset Server
+    Header always unset X-Powered-By
+</IfModule>

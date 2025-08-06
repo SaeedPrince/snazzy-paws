@@ -4,45 +4,337 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gallery - Snazzy Paws Grooming</title>
-  <link rel="stylesheet" href="css/style.css" />
+  
+  <!-- Bootstrap CSS Framework -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons for visual elements -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet" />
+  
+  <!-- Custom CSS Styles -->
+  <style>
+    /* Enhanced navbar brand styling */
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    
+    /* Page header with gradient background */
+    .page-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 80px 0 60px 0;
+    }
+    
+    /* Gallery item container with hover effects */
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+    
+    /* Gallery images with consistent sizing */
+    .gallery-item img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    
+    /* Overlay that appears on hover */
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+    
+    /* Footer styling */
+    footer {
+      background: #2c3e50;
+      color: white;
+    }
+    
+    /* Modal styling for image zoom */
+    .modal-content {
+      border-radius: 15px;
+    }
+    
+    .modal-body {
+      padding: 0;
+    }
+    
+    .modal-body img {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <h1>Snazzy Paws Grooming</h1>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="booking.html">Booking</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-heart-fill me-2"></i>Snazzy Paws Grooming
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="gallery.html">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="booking.html">Booking</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-  <main>
-    <section class="gallery">
-      <img src="images/dog01.jpg" alt="Groomed dog 1" />
-      <img src="images/dog02.jpg" alt="Groomed dog 2" />
-      <img src="images/dog03.jpg" alt="Groomed dog 3" />
-      <img src="images/dog04.jpg" alt="Groomed dog 4" />
-      <img src="images/dog05.jpg" alt="Groomed dog 5" />
-      <img src="images/dog06.jpg" alt="Groomed dog 6" />
-      <img src="images/dog07.jpg" alt="Groomed dog 7" />
-      <img src="images/dog08.jpg" alt="Groomed dog 8" />
-      <img src="images/dog09.jpg" alt="Groomed dog 9" />
-      <img src="images/dog10.jpg" alt="Groomed dog 10" />
-      <img src="images/dog11.jpg" alt="Groomed dog 11" />
-      <img src="images/dog12.jpg" alt="Groomed dog 12" />
-      <img src="images/dog13.jpg" alt="Groomed dog 13" />
-      <img src="images/dog14.jpg" alt="Groomed dog 14" />
-      <img src="images/dog15.jpg" alt="Groomed dog 15" />
-      <img src="images/dog16.jpg" alt="Groomed dog 16" />
-    </section>
-  </main>
+  <!-- Page Header -->
+  <section class="page-header text-center">
+    <div class="container">
+      <h1 class="display-4 mb-3">Our Gallery</h1>
+      <p class="lead">See the amazing transformations we've achieved for our furry clients</p>
+    </div>
+  </section>
 
-  <footer>
-    <p>Opening Hours: Mon–Sat 9:00am – 6:00pm</p>
+  <!-- Gallery Section -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-4" id="gallery">
+        <!-- Gallery items will be dynamically generated -->
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="gallery-item shadow" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="images/dog01.jpg" data-title="Beautiful Golden Retriever">
+            <img src="images/dog01.jpg" alt="Groomed dog 1" />
+            <div class="gallery-overlay">
+              <i class="bi bi-zoom-in fs-2"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="gallery-item shadow" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="images/dog02.jpg" data-title="Adorable Poodle Cut">
+            <img src="images/dog02.jpg" alt="Groomed dog 2" />
+            <div class="gallery-overlay">
+              <i class="bi bi-zoom-in fs-2"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="gallery-item shadow" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="images/dog03.jpg" data-title="Fluffy Shih Tzu">
+            <img src="images/dog03.jpg" alt="Groomed dog 3" />
+            <div class="gallery-overlay">
+              <i class="bi bi-zoom-in fs-2"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="gallery-item shadow" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="images/dog04.jpg" data-title="Stylish Yorkie">
+            <img src="images/dog04.jpg" alt="Groomed dog 4" />
+            <div class="gallery-overlay">
+              <i class="bi bi-zoom-in fs-2"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="gallery-item shadow" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="images/dog05.jpg" data-title="Happy Labrador">
+            <img src="images/dog05.jpg" alt="Groomed dog 5" />
+            <div class="gallery-overlay">
+              <i class="bi bi-zoom-in fs-2"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="gallery-item shadow" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="images/dog06.jpg" data-title="Elegant Afghan Hound">
+            <img src="images/dog06.jpg" alt="Groomed dog 6" />
+            <div class="gallery-overlay">
+              <i class="bi bi-zoom-in fs-2"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="gallery-item shadow" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="images/dog07.jpg" data-title="Cute Maltese">
+            <img src="images/dog07.jpg" alt="Groomed dog 7" />
+            <div class="gallery-overlay">
+              <i class="bi bi-zoom-in fs-2"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="gallery-item shadow" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="images/dog08.jpg" data-title="Playful Beagle">
+            <img src="images/dog08.jpg" alt="Groomed dog 8" />
+            <div class="gallery-overlay">
+              <i class="bi bi-zoom-in fs-2"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="gallery-item shadow" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="images/dog09.jpg" data-title="Regal German Shepherd">
+            <img src="images/dog09.jpg" alt="Groomed dog 9" />
+            <div class="gallery-overlay">
+              <i class="bi bi-zoom-in fs-2"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="gallery-item shadow" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="images/dog10.jpg" data-title="Fluffy Pomeranian">
+            <img src="images/dog10.jpg" alt="Groomed dog 10" />
+            <div class="gallery-overlay">
+              <i class="bi bi-zoom-in fs-2"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="gallery-item shadow" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="images/dog11.jpg" data-title="Beautiful Collie">
+            <img src="images/dog11.jpg" alt="Groomed dog 11" />
+            <div class="gallery-overlay">
+              <i class="bi bi-zoom-in fs-2"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="gallery-item shadow" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="images/dog12.jpg" data-title="Charming Cocker Spaniel">
+            <img src="images/dog12.jpg" alt="Groomed dog 12" />
+            <div class="gallery-overlay">
+              <i class="bi bi-zoom-in fs-2"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="gallery-item shadow" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="images/dog13.jpg" data-title="Adorable Dachshund">
+            <img src="images/dog13.jpg" alt="Groomed dog 13" />
+            <div class="gallery-overlay">
+              <i class="bi bi-zoom-in fs-2"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="gallery-item shadow" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="images/dog14.jpg" data-title="Majestic Husky">
+            <img src="images/dog14.jpg" alt="Groomed dog 14" />
+            <div class="gallery-overlay">
+              <i class="bi bi-zoom-in fs-2"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="gallery-item shadow" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="images/dog15.jpg" data-title="Sweet Bichon Frise">
+            <img src="images/dog15.jpg" alt="Groomed dog 15" />
+            <div class="gallery-overlay">
+              <i class="bi bi-zoom-in fs-2"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="gallery-item shadow" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="images/dog16.jpg" data-title="Handsome Boxer">
+            <img src="images/dog16.jpg" alt="Groomed dog 16" />
+            <div class="gallery-overlay">
+              <i class="bi bi-zoom-in fs-2"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="bg-light py-5">
+    <div class="container text-center">
+      <h3 class="mb-4">Want Your Pet to Look This Amazing?</h3>
+      <p class="lead mb-4">Book an appointment today and let us transform your furry friend!</p>
+      <a href="booking.html" class="btn btn-primary btn-lg">Book Now</a>
+    </div>
+  </section>
+
+  <!-- Modal for Image Zoom -->
+  <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="imageModalLabel">Gallery Image</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img id="modalImage" src="" alt="Gallery image" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-4 mt-5">
+    <div class="container text-center">
+      <p class="mb-0"><i class="bi bi-clock me-2"></i>Opening Hours: Mon–Sat 9:00am – 6:00pm</p>
+    </div>
   </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Handle modal image display
+    document.addEventListener('DOMContentLoaded', function() {
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      const modalImage = document.getElementById('modalImage');
+      const modalTitle = document.getElementById('imageModalLabel');
+      
+      galleryItems.forEach(item => {
+        item.addEventListener('click', function() {
+          const imageSrc = this.getAttribute('data-image');
+          const imageTitle = this.getAttribute('data-title');
+          
+          modalImage.src = imageSrc;
+          modalTitle.textContent = imageTitle;
+        });
+      });
+    });
+  </script>
 </body>
 </html>

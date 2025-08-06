@@ -4,50 +4,391 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact - Snazzy Paws Grooming</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <style>
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .page-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 80px 0 60px 0;
+    }
+    .contact-form {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      padding: 2rem;
+      margin-top: -50px;
+      position: relative;
+      z-index: 10;
+    }
+    .form-control, .form-select {
+      border-radius: 10px;
+      border: 2px solid #e9ecef;
+      padding: 12px 15px;
+      transition: all 0.3s ease;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border: none;
+      border-radius: 10px;
+      padding: 12px 30px;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #5a6fd8, #6a4190);
+    }
+    .contact-info-card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      padding: 2rem;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .contact-info-card:hover {
+      transform: translateY(-5px);
+    }
+    .contact-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      color: white;
+    }
+    .map-container {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      height: 400px;
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    footer {
+      background: #2c3e50;
+      color: white;
+    }
+    .section-divider {
+      height: 2px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border: none;
+      border-radius: 2px;
+      width: 100px;
+      margin: 2rem auto;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <h1>Snazzy Paws Grooming</h1>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="booking.html">Booking</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-heart-fill me-2"></i>Snazzy Paws Grooming
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gallery.html">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="booking.html">Booking</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-  <main>
-    <section>
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18..."
-    width="100%" height="300" style="border:0;" allowfullscreen=""
-    loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
+  <!-- Page Header -->
+  <section class="page-header text-center">
+    <div class="container">
+      <h1 class="display-4 mb-3">Contact Us</h1>
+      <p class="lead">Get in touch with our friendly team</p>
+    </div>
+  </section>
 
-  <form>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required />
+  <!-- Contact Info Cards -->
+  <section class="pb-5">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-lg-4 mb-4">
+          <div class="contact-info-card">
+            <div class="contact-icon">
+              <i class="bi bi-geo-alt fs-2"></i>
+            </div>
+            <h5 class="mb-3">Visit Us</h5>
+            <p class="text-muted">
+              123 Pet Grooming Street<br>
+              Happy Valley, Pet City<br>
+              PC 12345
+            </p>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+          <div class="contact-info-card">
+            <div class="contact-icon">
+              <i class="bi bi-telephone fs-2"></i>
+            </div>
+            <h5 class="mb-3">Call Us</h5>
+            <p class="text-muted">
+              <strong>(555) 123-PAWS</strong><br>
+              <strong>(555) 123-7297</strong><br>
+              Mon-Sat: 9:00am - 6:00pm
+            </p>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 mb-4">
+          <div class="contact-info-card">
+            <div class="contact-icon">
+              <i class="bi bi-envelope fs-2"></i>
+            </div>
+            <h5 class="mb-3">Email Us</h5>
+            <p class="text-muted">
+              <strong>info@snazzypaws.com</strong><br>
+              <strong>bookings@snazzypaws.com</strong><br>
+              We reply within 24 hours
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required />
+  <!-- Map and Contact Form -->
+  <section class="pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 mb-4">
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9476519598093!2d-73.99185368459418!3d40.74881817932847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1634567890123!5m2!1sen!2sus"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+        
+        <div class="col-lg-6">
+          <div class="contact-form">
+            <h4 class="mb-4 text-center">Send Us a Message</h4>
+            <form id="contactForm">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="name" class="form-label">Full Name *</label>
+                  <input type="text" class="form-control" id="name" name="name" required />
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                  <label for="email" class="form-label">Email Address *</label>
+                  <input type="email" class="form-control" id="email" name="email" required />
+                </div>
+                
+                <div class="col-12 mb-3">
+                  <label for="phone" class="form-label">Phone Number</label>
+                  <input type="tel" class="form-control" id="phone" name="phone" />
+                </div>
+                
+                <div class="col-12 mb-3">
+                  <label for="subject" class="form-label">Subject</label>
+                  <select class="form-select" id="subject" name="subject">
+                    <option value="">Select a subject</option>
+                    <option value="booking">Booking Inquiry</option>
+                    <option value="services">Service Questions</option>
+                    <option value="pricing">Pricing Information</option>
+                    <option value="complaint">Complaint or Concern</option>
+                    <option value="compliment">Compliment</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                
+                <div class="col-12 mb-3">
+                  <label for="message" class="form-label">Message *</label>
+                  <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Tell us how we can help you..."></textarea>
+                </div>
+                
+                <div class="col-12 mb-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter" />
+                    <label class="form-check-label" for="newsletter">
+                      Subscribe to our newsletter for grooming tips and special offers
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="col-12 text-center">
+                  <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="bi bi-send me-2"></i>Send Message
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <label for="phone">Phone:</label>
-    <input type="tel" id="phone" name="phone" />
+  <!-- FAQ Section -->
+  <section class="bg-light py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h3>Frequently Asked Questions</h3>
+        <hr class="section-divider">
+      </div>
+      
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="accordion" id="faqAccordion">
+            <div class="accordion-item mb-3 border-0 shadow-sm">
+              <h2 class="accordion-header" id="faq1">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                  How far in advance should I book an appointment?
+                </button>
+              </h2>
+              <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  We recommend booking at least 1-2 weeks in advance, especially during busy seasons like holidays. However, we often have same-day availability for urgent needs - just give us a call!
+                </div>
+              </div>
+            </div>
 
-    <label for="comment">Comment:</label>
-    <textarea id="comment" name="comment"></textarea>
+            <div class="accordion-item mb-3 border-0 shadow-sm">
+              <h2 class="accordion-header" id="faq2">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                  What should I bring to my pet's grooming appointment?
+                </button>
+              </h2>
+              <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Please bring your pet's vaccination records (for first visits), any special shampoos or medications, and a list of any behavioral concerns or special instructions. We'll take care of everything else!
+                </div>
+              </div>
+            </div>
 
-    <button type="submit">Submit</button>
-  </form>
-</section>
-  </main>
+            <div class="accordion-item mb-3 border-0 shadow-sm">
+              <h2 class="accordion-header" id="faq3">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                  How long does a typical grooming session take?
+                </button>
+              </h2>
+              <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  A full groom typically takes 2-3 hours, while basic services like nail trims take 15-30 minutes. We'll provide an estimated time when you book your appointment based on your pet's specific needs.
+                </div>
+              </div>
+            </div>
 
-  <footer>
-    <p>Opening Hours: Mon–Sat 9:00am – 6:00pm</p>
+            <div class="accordion-item mb-3 border-0 shadow-sm">
+              <h2 class="accordion-header" id="faq4">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
+                  Do you offer pickup and delivery services?
+                </button>
+              </h2>
+              <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Currently, we operate as a salon-based service where you drop off and pick up your pet. However, we're exploring mobile grooming options for the future. Contact us to stay updated on new services!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-5">
+    <div class="container text-center">
+      <h3 class="mb-4">Ready to Book Your Pet's Appointment?</h3>
+      <p class="lead mb-4">Our friendly team is here to help make your pet look and feel amazing!</p>
+      <div>
+        <a href="booking.html" class="btn btn-primary btn-lg me-3">
+          <i class="bi bi-calendar-plus me-2"></i>Book Now
+        </a>
+        <a href="tel:5551237297" class="btn btn-outline-primary btn-lg">
+          <i class="bi bi-telephone me-2"></i>Call Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4 mt-5">
+    <div class="container text-center">
+      <p class="mb-0"><i class="bi bi-clock me-2"></i>Opening Hours: Mon–Sat 9:00am – 6:00pm</p>
+    </div>
   </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Form submission handler
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form data
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+      
+      // Simple validation
+      if (!name || !email || !message) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+      
+      // Success message
+      alert(`Thank you ${name}! Your message has been sent. We'll get back to you within 24 hours.`);
+      
+      // Reset form
+      this.reset();
+    });
+    
+    // Phone number formatting
+    document.getElementById('phone').addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length >= 6) {
+        value = value.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+      } else if (value.length >= 3) {
+        value = value.replace(/(\d{3})(\d{0,3})/, '($1) $2');
+      }
+      e.target.value = value;
+    });
+  </script>
 </body>
 </html>

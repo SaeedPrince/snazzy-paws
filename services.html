@@ -4,40 +4,376 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Services - Snazzy Paws Grooming</title>
-  <link rel="stylesheet" href="css/style.css" />
+  
+  <!-- Bootstrap CSS Framework -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons for visual elements -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet" />
+  
+  <!-- Custom CSS Styles -->
+  <style>
+    /* Enhanced navbar brand styling */
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    
+    /* Page header with gradient background */
+    .page-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 80px 0 60px 0;
+    }
+    
+    /* Service cards with hover effects */
+    .service-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Price tag styling with gradient background */
+    .price-tag {
+      background: #667eea;
+      color: white;
+      border-radius: 25px;
+      padding: 8px 20px;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    
+    /* Footer styling */
+    footer {
+      background: #2c3e50;
+      color: white;
+    }
+    
+    /* Service icon with gradient background */
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      color: white;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <h1>Snazzy Paws Grooming</h1>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="booking.html">Booking</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- Main Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <!-- Brand/Logo with icon -->
+      <a class="navbar-brand" href="index.html">
+        <i class="bi bi-heart-fill me-2"></i>Snazzy Paws Grooming
+      </a>
+      
+      <!-- Mobile menu toggle button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <!-- Navigation menu items -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gallery.html">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="booking.html">Booking</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-  <main>
-    <section>
-  <table>
-    <thead>
-      <tr><th>Service</th><th>Price</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Full Groom</td><td>$50</td></tr>
-      <tr><td>Nail Trim</td><td>$15</td></tr>
-      <tr><td>Bath & Dry</td><td>$30</td></tr>
-      <tr><td>Ear Cleaning</td><td>$10</td></tr>
-    </tbody>
-  </table>
-</section>
-  </main>
+  <!-- Page Header with title and description -->
+  <section class="page-header text-center">
+    <div class="container">
+      <h1 class="display-4 mb-3">Our Services</h1>
+      <p class="lead">Professional grooming services tailored to your pet's needs</p>
+    </div>
+  </section>
 
-  <footer>
-    <p>Opening Hours: Mon–Sat 9:00am – 6:00pm</p>
+  <!-- Services Section displaying all available services -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        
+        <!-- Service 1: Full Groom -->
+        <div class="col-lg-6 col-md-6 mb-4">
+          <div class="card service-card h-100 shadow">
+            <div class="card-body text-center p-4">
+              <!-- Service icon -->
+              <div class="service-icon">
+                <i class="bi bi-scissors fs-2"></i>
+              </div>
+              
+              <!-- Service details -->
+              <h4 class="card-title mb-3">Full Groom</h4>
+              <p class="card-text mb-4">
+                Complete grooming package including bath, dry, cut, nail trim, and ear cleaning. 
+                Perfect for keeping your pet looking their absolute best.
+              </p>
+              
+              <!-- Price and duration information -->
+              <div class="price-tag d-inline-block mb-3">$50</div>
+              <div class="mt-3">
+                <small class="text-muted">
+                  <i class="bi bi-clock me-1"></i>Approximately 2-3 hours
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 2: Bath & Dry -->
+        <div class="col-lg-6 col-md-6 mb-4">
+          <div class="card service-card h-100 shadow">
+            <div class="card-body text-center p-4">
+              <!-- Service icon -->
+              <div class="service-icon">
+                <i class="bi bi-droplet fs-2"></i>
+              </div>
+              
+              <!-- Service details -->
+              <h4 class="card-title mb-3">Bath & Dry</h4>
+              <p class="card-text mb-4">
+                Thorough bath with premium shampoos followed by professional blow-drying. 
+                Leaves your pet clean, fresh, and fluffy.
+              </p>
+              
+              <!-- Price and duration information -->
+              <div class="price-tag d-inline-block mb-3">$30</div>
+              <div class="mt-3">
+                <small class="text-muted">
+                  <i class="bi bi-clock me-1"></i>Approximately 1-1.5 hours
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 3: Nail Trim -->
+        <div class="col-lg-6 col-md-6 mb-4">
+          <div class="card service-card h-100 shadow">
+            <div class="card-body text-center p-4">
+              <!-- Service icon -->
+              <div class="service-icon">
+                <i class="bi bi-bandaid fs-2"></i>
+              </div>
+              
+              <!-- Service details -->
+              <h4 class="card-title mb-3">Nail Trim</h4>
+              <p class="card-text mb-4">
+                Professional nail trimming service to keep your pet's nails healthy and prevent scratching. 
+                Quick and stress-free experience.
+              </p>
+              
+              <!-- Price and duration information -->
+              <div class="price-tag d-inline-block mb-3">$15</div>
+              <div class="mt-3">
+                <small class="text-muted">
+                  <i class="bi bi-clock me-1"></i>Approximately 15-30 minutes
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 4: Ear Cleaning -->
+        <div class="col-lg-6 col-md-6 mb-4">
+          <div class="card service-card h-100 shadow">
+            <div class="card-body text-center p-4">
+              <!-- Service icon -->
+              <div class="service-icon">
+                <i class="bi bi-ear fs-2"></i>
+              </div>
+              
+              <!-- Service details -->
+              <h4 class="card-title mb-3">Ear Cleaning</h4>
+              <p class="card-text mb-4">
+                Gentle ear cleaning to remove wax and debris, helping prevent infections 
+                and keeping your pet comfortable.
+              </p>
+              
+              <!-- Price and duration information -->
+              <div class="price-tag d-inline-block mb-3">$10</div>
+              <div class="mt-3">
+                <small class="text-muted">
+                  <i class="bi bi-clock me-1"></i>Approximately 15 minutes
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Additional Information Section -->
+  <section class="bg-light py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h3 class="mb-4">Why Choose Snazzy Paws?</h3>
+          
+          <!-- Benefits grid -->
+          <div class="row">
+            <!-- Benefit 1: Licensed & Insured -->
+            <div class="col-md-4 mb-3">
+              <i class="bi bi-shield-check text-primary fs-2 mb-2"></i>
+              <h6>Licensed & Insured</h6>
+              <p class="small text-muted">Fully certified professionals you can trust</p>
+            </div>
+            
+            <!-- Benefit 2: Pet-Friendly -->
+            <div class="col-md-4 mb-3">
+              <i class="bi bi-heart-fill text-primary fs-2 mb-2"></i>
+              <h6>Pet-Friendly</h6>
+              <p class="small text-muted">Stress-free environment for anxious pets</p>
+            </div>
+            
+            <!-- Benefit 3: Quality Products -->
+            <div class="col-md-4 mb-3">
+              <i class="bi bi-star-fill text-primary fs-2 mb-2"></i>
+              <h6>Quality Products</h6>
+              <p class="small text-muted">Premium shampoos and grooming supplies</p>
+            </div>
+          </div>
+          
+          <!-- Call-to-action button -->
+          <a href="booking.html" class="btn btn-primary btn-lg mt-4">Book Your Appointment</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer with business hours -->
+  <footer class="py-4 mt-5">
+    <div class="container text-center">
+      <p class="mb-0">
+        <i class="bi bi-clock me-2"></i>Opening Hours: Mon–Sat 9:00am – 6:00pm
+      </p>
+    </div>
   </footer>
+
+  <!-- Bootstrap JavaScript Bundle -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+          <div class="card service-card h-100 shadow">
+            <div class="card-body text-center p-4">
+              <div class="service-icon">
+                <i class="bi bi-droplet fs-2"></i>
+              </div>
+              <h4 class="card-title mb-3">Bath & Dry</h4>
+              <p class="card-text mb-4">Thorough bath with premium shampoos followed by professional blow-drying. Leaves your pet clean, fresh, and fluffy.</p>
+              <div class="price-tag d-inline-block mb-3">$30</div>
+              <div class="mt-3">
+                <small class="text-muted">
+                  <i class="bi bi-clock me-1"></i>Approximately 1-1.5 hours
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nail Trim Service -->
+        <div class="col-lg-6 col-md-6 mb-4">
+          <div class="card service-card h-100 shadow">
+            <div class="card-body text-center p-4">
+              <div class="service-icon">
+                <i class="bi bi-bandaid fs-2"></i>
+              </div>
+              <h4 class="card-title mb-3">Nail Trim</h4>
+              <p class="card-text mb-4">Professional nail trimming service to keep your pet's nails healthy and prevent scratching. Quick and stress-free experience.</p>
+              <div class="price-tag d-inline-block mb-3">$15</div>
+              <div class="mt-3">
+                <small class="text-muted">
+                  <i class="bi bi-clock me-1"></i>Approximately 15-30 minutes
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ear Cleaning Service -->
+        <div class="col-lg-6 col-md-6 mb-4">
+          <div class="card service-card h-100 shadow">
+            <div class="card-body text-center p-4">
+              <div class="service-icon">
+                <i class="bi bi-ear fs-2"></i>
+              </div>
+              <h4 class="card-title mb-3">Ear Cleaning</h4>
+              <p class="card-text mb-4">Gentle ear cleaning to remove wax and debris, helping prevent infections and keeping your pet comfortable.</p>
+              <div class="price-tag d-inline-block mb-3">$10</div>
+              <div class="mt-3">
+                <small class="text-muted">
+                  <i class="bi bi-clock me-1"></i>Approximately 15 minutes
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Additional Info Section -->
+  <section class="bg-light py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h3 class="mb-4">Why Choose Snazzy Paws?</h3>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <i class="bi bi-shield-check text-primary fs-2 mb-2"></i>
+              <h6>Licensed & Insured</h6>
+              <p class="small text-muted">Fully certified professionals you can trust</p>
+            </div>
+            <div class="col-md-4 mb-3">
+              <i class="bi bi-heart-fill text-primary fs-2 mb-2"></i>
+              <h6>Pet-Friendly</h6>
+              <p class="small text-muted">Stress-free environment for anxious pets</p>
+            </div>
+            <div class="col-md-4 mb-3">
+              <i class="bi bi-star-fill text-primary fs-2 mb-2"></i>
+              <h6>Quality Products</h6>
+              <p class="small text-muted">Premium shampoos and grooming supplies</p>
+            </div>
+          </div>
+          <a href="booking.html" class="btn btn-primary btn-lg mt-4">Book Your Appointment</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4 mt-5">
+    <div class="container text-center">
+      <p class="mb-0"><i class="bi bi-clock me-2"></i>Opening Hours: Mon–Sat 9:00am – 6:00pm</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
